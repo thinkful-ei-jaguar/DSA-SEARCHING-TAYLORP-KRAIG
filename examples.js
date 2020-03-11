@@ -1,6 +1,9 @@
 const BST = require('./bst')
 const bst = new BST();
 
+const Q = require('./queue')
+const queue = new Q();
+
 /**
  * 4.a) 14, 15, 19, 25, 27, 35, 79, 89, 90, 91 -->in-order
  *      35, 25, 15, 14, 19, 27, 89, 79, 91, 90 --> pre-order
@@ -59,6 +62,23 @@ function inOrder(tree){
     inOrder(tree.right)
   }
   
+}
+
+function bfs(tree) { 
+  let node = tree.key
+  let tempQ = new Q();
+
+  tempQ.enqueue(node) //A
+  while(tempQ.length){
+    node = tempQ.dequeue() //node = whatever comes out of Q next // tempQ: D, E, F
+    queue.enqueue(node) // A, B, C
+    if(node.left){
+     tempQ.enqueue(node.left) // D,
+    }
+    if(node.right){
+     tempQ.enqueue(node.right) // B, C
+    }
+  }
 }
 
 const testArr =[25, 15, 50, 10, 24, 35, 70, 4, 12, 18, 31, 44, 66, 90, 22]
