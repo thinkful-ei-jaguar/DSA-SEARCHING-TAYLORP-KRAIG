@@ -81,6 +81,34 @@ function bfs(tree) {
   }
 }
 
+stocks = [128, 97, 121, 123, 98, 97, 105]
+
+function maxProfit(arr) {
+  let stocksHeld = false
+  let profit = 0;
+  currentStock = null;
+
+  for(let i=0; i<arr.length; i++){
+    if(!stocksHeld && arr[i]<arr[i+1]){
+      console.log('buy!')
+      stocksHeld = true
+      currentStock = arr[i]
+    }
+    if(stocksHeld && arr[i]>arr[i+1]){
+      console.log('sell!')
+      stocksHeld = false
+      profit += arr[i] - currentStock
+      currentStock = null
+    }
+  }
+  if(stocksHeld) {
+    profit += arr[arr.length-1] - currentStock
+  }
+  return profit;
+}
+
+console.log(maxProfit(stocks));
+
 const testArr =[25, 15, 50, 10, 24, 35, 70, 4, 12, 18, 31, 44, 66, 90, 22]
 function main(arr) {
   for(let i=0; i<arr.length; i++) {
@@ -97,4 +125,4 @@ function main(arr) {
   console.log('====')
 
 }
-main(testArr);
+//main(testArr);
